@@ -1,21 +1,34 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello HomeController!{% endblock %}
+{% block title %}Bienvenue...{% endblock %}
 
 {% block body %}
     <div data-spy="scroll" data-target="#navhome" data-offset="0">
         <header id="acceuil" class="headImage">
             <div class="container">
                 <div class="row">
-                    <div class="col-lg-6">
+                    <div class="col-lg-7">
                         <div class="home-title">
-                            <h2><strong>Bienvenue sur SingleRoom</strong></h2>
-                            <h5>Joignez l'utile à l'agréable lors de vos déplacements...</h5>
+                            <h1><strong>Bienvenue sur SingleRoom</strong></h1>
                         </div>
-                        <img src="http://placehold.it/500x400" alt="image">
+                        <h4 class="mb-3" style="color: white">Vos déplacements ne seront plus pareil...</h4>
+                        <img src="/img/earth.png" alt="image" style="max-width:500px; max-height:400px">
                     </div>
-                    <div class="col">
-                        <p>formulaire</p>
+                    <div class="col-lg-4">
+                        <div class="card text-center mt-2">
+                            <div class="card-header card-entete">
+                                <h4><strong>Pas encore inscrit(e)?</strong></h4>
+                                <h4><strong>N'hésitez pas, c'est gratuit!</strong></h4>
+                            </div>
+                            <div class="card-body">
+                                <h5 class="card-title">Special title treatment</h5>
+                                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                                <a href="#" class="btn btn-primary">Go somewhere</a>
+                            </div>
+                            <div class="card-footer text-muted">
+                                2 days ago
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
