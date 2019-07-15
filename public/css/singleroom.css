@@ -1,11 +1,19 @@
 header.headImage {
     /* background: url('/img/trip.jpeg') no-repeat center center;*/
+    display: block;
     background-color: #7fadc5;
     background-size: cover;
     padding-top: 6rem;
-    margin-bottom: 4rem;
-    height: 80vh;
+    padding-bottom: 3rem;
+    margin-bottom: 1rem;
+    /*height: 80vh;*/
     width: 100vw;
+}
+
+div.test{
+  background-color: #7fad54;
+  height: 20hv;
+  width: 100wh;
 }
 
 .home-title{
