@@ -1,6 +1,10 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}Bienvenue...{% endblock %}
+{% block stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('css/home') }}
+{% endblock %}
 
 {% block body %}
     <div data-spy="scroll" data-target="#navhome" data-offset="0">
@@ -65,7 +69,7 @@
             </p>
                 Non blandit massa enim nec dui nunc mattis enim ut. Ante metus dictum at tempor commodo ullamcorper. Mattis pellentesque id nibh tortor. Mauris commodo quis imperdiet massa tincidunt nunc pulvinar sapien. Sit amet aliquam id diam maecenas ultricies. Fringilla urna porttitor rhoncus dolor purus non enim. Malesuada fames ac turpis egestas integer eget aliquet nibh. Faucibus a pellentesque sit amet porttitor eget dolor morbi. Ut pharetra sit amet aliquam. Et sollicitudin ac orci phasellus egestas tellus rutrum tellus. Et malesuada fames ac turpis egestas sed tempus urna. Consequat interdum varius sit amet mattis.
             </p>
-            <div class="price mt-5 mb-4">
+            <div class="price mt-5 mb-4" id="price">
                 <i class="fas fa-hand-holding-usd" id="money"></i>
                 <span id="title-price">Les Abonnements</span>
             </div>
