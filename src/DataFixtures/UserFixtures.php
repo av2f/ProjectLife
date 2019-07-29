@@ -11,10 +11,10 @@ use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 class UserFixtures extends Fixture
 {
 
-    private $encoder;
+    private $passwordEncoder;
 
-    public function __construct(UserPasswordEncoderInterface $encoder){
-        $this->encoder=$encoder;
+    public function __construct(UserPasswordEncoderInterface $passwordEncoder){
+        $this->passwordEncoder=$passwordEncoder;
     }
     
    /**
@@ -31,8 +31,9 @@ class UserFixtures extends Fixture
         $number=(string)mt_rand(120,999);
         $firstN=(strlen($firstName)>5) ? substr($firstName,0,strlen($firstName)-3) : $firstName;
         $lastN=(strlen($lastName)>5) ? substr($lastName,0,strlen($lastName)-3) : $lastName;
-        
-        return $firstN.$lastN.$number;
+        $pseudo=$firstN.$lastN.$number;
+        dump($pseudo);
+        return $pseudo;
     }
     
     public function load(ObjectManager $manager)
@@ -46,17 +47,23 @@ class UserFixtures extends Fixture
             
             // define randomly the gender of user
             $gender=$faker->randomElement($genders);
+            // define a birthday date
             $birthDate= new \DateTime();
             $birthDate=$faker->dateTimeBetween('-60 years','-20 years');
+            // Generate a picture
+            $picture='https://randomuser.me/api/portraits/';
+            $pictureId=$faker->numberbetween(1,99) . '.jpg';
+            $picture .= ($gender=='male' ? 'men/' : 'women/') .$pictureId;
 
             $user   -> setPseudo($this->createPseudo($faker->firstName($gender), $faker->lastName($gender)))
                     -> setEmail($faker->email)
-                    -> setPassword($this->encoder->encodePassword($user,'password'))
-                    -> setBirthdayDate($birthDate->format('Y-m-d'))
+                    -> setPassword($this->passwordEncoder->encodePassword($user,'password'))
+                    -> setAvatar($picture)
+                    -> setBirthdayDate($birthDate)
                     -> setAge(30)
-                    -> setDecription($faker->sentence())
-                    -> setCreatedAt($faker->dateTime('now'))
-                    -> setModifiedAt($faker->dateTime('now'));
+                    -> setDescription($faker->sentence())
+                    -> setCreatedAt($faker->dateTime('2019-07-29'))
+                    -> setLastModified($faker->dateTime('2019-07-29'));
 
             $manager->persist($user);
         }
