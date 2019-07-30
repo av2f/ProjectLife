@@ -58,10 +58,8 @@ class UserFixtures extends Fixture
                     -> setPassword($this->passwordEncoder->encodePassword($user,'password'))
                     -> setAvatar($picture)
                     -> setBirthdayDate($birthDate)
-                    -> setAge(30)
                     -> setDescription($faker->sentence())
-                    -> setCreatedAt(new \DateTime('now'))
-                    -> setLastModified(new \DateTime('now'));
+                    -> setCreatedAt(new \DateTime());
 
             $manager->persist($user);
         }

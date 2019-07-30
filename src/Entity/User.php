@@ -33,7 +33,7 @@ class User implements UserInterface
     private $password;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $avatar;
 
@@ -41,21 +41,6 @@ class User implements UserInterface
      * @ORM\Column(type="date")
      */
     private $birthdayDate;
-
-    /**
-     * @ORM\Column(type="smallint")
-     */
-    private $age;
-
-    /**
-     * @ORM\Column(type="float", nullable=true)
-     */
-    private $height;
-
-    /**
-     * @ORM\Column(type="float", nullable=true)
-     */
-    private $weight;
 
     /**
      * @ORM\Column(type="text", nullable=true)
@@ -68,24 +53,9 @@ class User implements UserInterface
     private $createdAt;
 
     /**
-     * @ORM\Column(type="datetime")
-     */
-    private $lastModified;
-
-    /**
      * @ORM\Column(type="datetime", nullable=true)
      */
-    private $subscriptPaidAt;
-
-    /**
-     * @ORM\Column(type="datetime", nullable=true)
-     */
-    private $subscriptBeginAt;
-
-    /**
-     * @ORM\Column(type="datetime", nullable=true)
-     */
-    private $subscriptEndAt;
+    private $modifiedAt;
 
     public function getId(): ?int
     {
@@ -133,7 +103,7 @@ class User implements UserInterface
         return $this->avatar;
     }
 
-    public function setAvatar(string $avatar): self
+    public function setAvatar(?string $avatar): self
     {
         $this->avatar = $avatar;
 
@@ -148,42 +118,6 @@ class User implements UserInterface
     public function setBirthdayDate(\DateTimeInterface $birthdayDate): self
     {
         $this->birthdayDate = $birthdayDate;
-
-        return $this;
-    }
-
-    public function getAge(): ?int
-    {
-        return $this->age;
-    }
-
-    public function setAge(int $age): self
-    {
-        $this->age = $age;
-
-        return $this;
-    }
-
-    public function getHeight(): ?float
-    {
-        return $this->height;
-    }
-
-    public function setHeight(?float $height): self
-    {
-        $this->height = $height;
-
-        return $this;
-    }
-
-    public function getWeight(): ?float
-    {
-        return $this->weight;
-    }
-
-    public function setWeight(?float $weight): self
-    {
-        $this->weight = $weight;
 
         return $this;
     }
@@ -212,70 +146,30 @@ class User implements UserInterface
         return $this;
     }
 
-    public function getLastModified(): ?\DateTimeInterface
+    public function getModifiedAt(): ?\DateTimeInterface
     {
-        return $this->lastModified;
+        return $this->modifiedAt;
     }
 
-    public function setLastModified(\DateTimeInterface $lastModified): self
+    public function setModifiedAt(?\DateTimeInterface $modifiedAt): self
     {
-        $this->lastModified = $lastModified;
-
-        return $this;
-    }
-
-    public function getSubscriptPaidAt(): ?\DateTimeInterface
-    {
-        return $this->subscriptPaidAt;
-    }
-
-    public function setSubscriptPaidAt(?\DateTimeInterface $subscriptPaidAt): self
-    {
-        $this->subscriptPaidAt = $subscriptPaidAt;
-
-        return $this;
-    }
-
-    public function getSubscriptBeginAt(): ?\DateTimeInterface
-    {
-        return $this->subscriptBeginAt;
-    }
-
-    public function setSubscriptBeginAt(?\DateTimeInterface $subscriptBeginAt): self
-    {
-        $this->subscriptBeginAt = $subscriptBeginAt;
-
-        return $this;
-    }
-
-    public function getSubscriptEndAt(): ?\DateTimeInterface
-    {
-        return $this->subscriptEndAt;
-    }
-
-    public function setSubscriptEndAt(?\DateTimeInterface $subscriptEndAt): self
-    {
-        $this->subscriptEndAt = $subscriptEndAt;
+        $this->modifiedAt = $modifiedAt;
 
         return $this;
     }
 
     // functions for implementation of UserInterface
-
     public function getUsername()
     {
         return $this->pseudo;
     }
-
     public function getRoles() {}
-
     public function getSalt()
     {
         // you *may* need a real salt depending on your encoder
         // see section on salt below
         return null;
     }
-
     public function eraseCredentials() {}
 
 }
