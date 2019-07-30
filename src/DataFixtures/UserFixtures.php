@@ -31,7 +31,7 @@ class UserFixtures extends Fixture
         $number=(string)mt_rand(120,999);
         $firstN=(strlen($firstName)>5) ? substr($firstName,0,strlen($firstName)-3) : $firstName;
         $lastN=(strlen($lastName)>5) ? substr($lastName,0,strlen($lastName)-3) : $lastName;
-        $pseudo=$firstN.$lastN.$number;
+        $pseudo=$firstN.$number;
         dump($pseudo);
         return $pseudo;
     }
@@ -55,6 +55,8 @@ class UserFixtures extends Fixture
             $pictureId=$faker->numberbetween(1,99) . '.jpg';
             $picture .= ($gender=='male' ? 'men/' : 'women/') .$pictureId;
 
+            $createdAt=new \DateTime();
+
             $user   -> setPseudo($this->createPseudo($faker->firstName($gender), $faker->lastName($gender)))
                     -> setEmail($faker->email)
                     -> setPassword($this->passwordEncoder->encodePassword($user,'password'))
@@ -62,8 +64,8 @@ class UserFixtures extends Fixture
                     -> setBirthdayDate($birthDate)
                     -> setAge(30)
                     -> setDescription($faker->sentence())
-                    -> setCreatedAt($faker->dateTime('2019-07-29'))
-                    -> setLastModified($faker->dateTime('2019-07-29'));
+                    -> setCreatedAt($createdAt)
+                    -> setLastModified(new \DateTime());
 
             $manager->persist($user);
         }
