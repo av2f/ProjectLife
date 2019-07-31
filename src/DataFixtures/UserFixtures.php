@@ -53,13 +53,13 @@ class UserFixtures extends Fixture
             $pictureId=$faker->numberbetween(1,99) . '.jpg';
             $picture .= ($gender=='male' ? 'men/' : 'women/') .$pictureId;
 
+            // CreatedAt is generated with prePersist function
             $user   -> setPseudo($this->createPseudo($faker->firstName($gender)))
                     -> setEmail($faker->email)
                     -> setPassword($this->passwordEncoder->encodePassword($user,'password'))
                     -> setAvatar($picture)
                     -> setBirthdayDate($birthDate)
-                    -> setDescription($faker->sentence())
-                    -> setCreatedAt(new \DateTime());
+                    -> setDescription($faker->sentence());
 
             $manager->persist($user);
         }

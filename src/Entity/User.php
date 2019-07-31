@@ -4,9 +4,23 @@ namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
+ * @ORM\HasLifecycleCallbacks()
+ * 
+ * @UniqueEntity(
+ *  fields = {"pseudo"},
+ *  message = "Ce Pseudonyme existe déjà, merci d'en choisir un autre")
+ * )
+ * 
+ * @UniqueEntity(
+ *  fields = {"email"},
+ *  message = "Ce adresse mail existe déjà, merci d'en choisir une autre")
+ * )
+ * 
  */
 class User implements UserInterface
 {
@@ -19,21 +33,42 @@ class User implements UserInterface
 
     /**
      * @ORM\Column(type="string", length=100)
+     * @Assert\NotBlank(
+     *  message = "Veuillez saisir un pseudonyme"
+     * )
+     * @Assert\Length(
+     *  min=5,
+     *  minMessage="le mot de passe doit contenir au moins {{ limit }} caractères ou chiffres"
+     * )
      */
     private $pseudo;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(
+     *  message = "Veuillez saisir une adresse mail"
+     * )
+     * @Assert\Email(
+     *  message = "Veuillez saisir une adresse mail valide"
+     * )
      */
     private $email;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * 
      */
     private $password;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Assert\NotBlank(
+     *  message="Veuillez saisir un mot de passe (8 car. min)"
+     * )
+     * @Assert\Length(
+     *  min=8,
+     *  minMessage="le mot de passe doit contenir au moins {{ limit }} caractères"
+     * )
      */
     private $avatar;
 
@@ -171,5 +206,30 @@ class User implements UserInterface
         return null;
     }
     public function eraseCredentials() {}
+
+    // lifecycleCallbacks functions
+
+    
+    /**
+     * Generate the date of creation of profile in prePersist
+     * 
+     * @ORM\PrePersist
+     *
+     * @return void
+     */
+    public function setCreatedAtDate(){
+        $this->createdAt = new \DateTime();
+    }
+
+    /**
+     * Generate the date of last modified date of profile in preUpdate
+     * 
+     * @ORM\PreUpdate
+     *
+     * @return void
+     */
+    public function setModifiedAtDate(){
+        $this->modifiedAt = new \DateTime();
+    }
 
 }

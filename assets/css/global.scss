@@ -4,6 +4,10 @@
 /* import du theme Flatty de Bootswatch */
 @import './bootstrap.min.css';
 
+.container {
+  padding-top: 6rem;
+}
+
 .footer {
   position: relative;
   bottom: 0;
@@ -12,3 +16,4 @@
   line-height: 60px; /* Vertically center the text there */
   background-color: #f5f5f5;
 }
+
