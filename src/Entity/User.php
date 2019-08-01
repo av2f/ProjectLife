@@ -198,7 +198,9 @@ class User implements UserInterface
     {
         return $this->pseudo;
     }
-    public function getRoles() {}
+    public function getRoles() {
+        return array('ROLE_USER');
+    }
     public function getSalt()
     {
         // you *may* need a real salt depending on your encoder
