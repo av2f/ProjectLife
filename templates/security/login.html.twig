@@ -1,53 +1,98 @@
-{% extends 'base.html.twig' %}
+{% extends 'baseAccount.html.twig' %}
 
 {% block title %}Se Connecter{% endblock %}
 
 {% block body %}
-<div class="container">
-    <div class="d-flex justify-content-center p-2">
-        <div class="card border-primary mb-3" style="max-width: 30rem;">
-            <div class="card-header text-white text-center" style="background-color: #b1c18c">
-                <h3><i class="fas fa-sign-in-alt"></i>&nbsp;Veuillez vous identifier</h3>
-            </div>
-            <div class="card-body">
-                <form method="post">
 
-                    {% if error %}
-                        <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-                    {% endif %}
+    {# for error message in form #}
+    {% set bPseudo=false %}
+    {% set bPassword=false %}
+    {% if error %}
+        {% if 'pseudo' in error.messageKey %}
+            {% set bPseudo=true %}
+        {% endif %}
+        {% if 'credentials' in error.messageKey %}
+            {% set bPassword=true %}
+        {% endif %}
+    {% endif %}
 
-                    {% if app.user %}
-                        <div class="checkbox mb-3">You are logged in as {{ app.user.username }}, <a href="{{ path('app_logout') }}">Logout</a>
-                    {% endif %}
+    <div class="container">
+        <div class="d-flex justify-content-center p-2">
+            <a href="{{ path('app_home') }}">
+                <img src="/img/logo.png" width="72" height="72" alt="">
+            </a>
+        </div>
+        <div class="d-flex justify-content-center p-1">
+            <div class="card border-primary mb-3" style="max-width:30rem;">
+                <div class="card-header text-white text-center">
+                    <h4><i class="fas fa-sign-in-alt"></i>&nbsp;Veuillez vous identifier</h4>
+                </div>
+                <div class="card-body">
+                    <form method="post">
+                        {# disply error code. managed in input form
+                        {% if error %}
+                            <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                        {% endif %}
+                        #}
 
-                    <div class="form-group">
-                        <label for="inputPseudo">Pseudonyme</label>
-                        <input type="text" value="{{ last_username }}" name="pseudo" class="form-control"
-                            id="inputPseudo" placeholder="Saisissez votre Pseudonyme" required autofocus>
-                    </div>
-                    <div class="form-group">
-                        <label for="inputPassword">Mot de Passe</label>
-                        <input type="password" name="password" class="form-control"
-                            id="inputPassword" placeholder="Saisissez votre mot de passe" required>
-                    </div>
-                    <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
-                    {#
-                        Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
-                        See https://symfony.com/doc/current/security/remember_me.html
+                        {% if app.user %}
+                            <div class="checkbox mb-3">You are logged in as {{ app.user.username }}, <a href="{{ path('app_logout') }}">Logout</a></div>
+                        {% endif %}
 
-                        <div class="checkbox mb-3">
-                            <label>
-                                <input type="checkbox" name="_remember_me"> Remember me
-                            </label>
+                        <div class="form-group">
+                            <label for="inputPseudo">Pseudonyme</label>
+                            <input type="text" value="{{ last_username }}" name="pseudo" class="form-control 
+                            {% if bPseudo %} is-invalid {% endif %}"
+                                id="inputPseudo" placeholder="Saisissez votre pseudonyme" required autofocus>
+                            {% if bPseudo %}
+                                <div class="invalid-feedback">Ce Pseudonyme n'existe pas, réessayez.</div>
+                            {% endif %}
                         </div>
-                    #}
+                        <div class="form-group">
+                            <label for="inputPassword">Mot de Passe</label>
+                            <input type="password" name="password" class="form-control
+                            {% if bPassword %} is-invalid {% endif %}"
+                                id="inputPassword" placeholder="Saisissez votre mot de passe" required>
+                            {% if bPassword %}
+                                <div class="invalid-feedback">Mot de passe incorrect, réessayez.</div>
+                            {% endif %}
+                        </div>
+                        <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+                        {#
+                            Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
+                            See https://symfony.com/doc/current/security/remember_me.html
 
-                    <button class="btn btn-primary" type="submit">
-                        Se Connecter
-                    </button>
-                </form>
+                            <div class="checkbox mb-3">
+                                <label>
+                                    <input type="checkbox" name="_remember_me"> Remember me
+                                </label>
+                            </div>
+                        #}
+                        <div class="text-center">
+                            <button class="btn btn-primary"  type="submit">
+                                Me Connecter
+                            </button>
+                        </div>
+                    </form>
+                    
+                </div>
+                <div class="card-footer">
+                    <div class="row mt-4">
+                        <div class="col-4">
+                            <p class="p-left">
+                                <i class="fas fa-home"></i>&nbsp;
+                                <a href="{{ path('app_home')}}">Accueil</a>
+                            </p>
+                        </div>
+                        <div class="col-8">
+                            <p class="p-right">
+                                <i class="fas fa-unlock-alt"></i>&nbsp;
+                                <a href="#">Mot de passe oublié ?</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-</div>
 {% endblock %}

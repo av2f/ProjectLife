@@ -1,7 +1,12 @@
+/* color */
+$cardColor: #b1c18c;
+$backgColor: #7fadc5;
+$titleContent: #f5853b;
+
 header.headImage {
     /* background: url('/img/trip.jpeg') no-repeat center center;*/
     display: block;
-    background-color: #7fadc5;
+    background-color: $backgColor;
     background-size: cover;
     padding-top: 6rem;
     padding-bottom: 3rem;
@@ -29,8 +34,8 @@ header.headImage {
     }
 }
 
-.card-entete {
-    background-color: #b1c18c;
+.card-header {
+    background-color: $cardColor;
     color: #ffffff;
 
 }
@@ -41,25 +46,20 @@ header.headImage {
 
 #title-concept, #title-price {
     margin-left: 0.5rem;
-    font-size: 3rem;
-    color: #f5853b;
 }
 
-#light, #money {
-    color:  #f5853b;
+#title-concept, #title-price, #light, #money {
+    color:  $titleContent;
     font-size: 3rem;
 }
 
-#price-list div.card-header {
-    background-color: #b1c18c;
-    color: #ffffff;
-    font-weight: 600;
+#price-list {
     font-size: 1.8rem;
     text-align: center;
-}
-
-#price-list .card-title {
-    font-size: 1.8rem;
-    font-weight: bold;
-    text-align: center;
+    .card-header{
+        font-weight: 600;
+    }
+    .card-title {
+        font-weight: bold;
+    }
 }

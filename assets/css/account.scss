@@ -1,0 +1,23 @@
+/* import du theme Flatty de Bootswatch */
+@import './bootstrap.min.css';
+
+$cardColor: #b1c18c;
+
+.card-header{
+    background-color: $cardColor;
+}
+
+.card-footer {
+    p {
+        font-size: .7rem;
+        .p-left {
+            text-align: left;
+        }
+        .p-right {
+            text-align: right;
+        }
+    }
+    a {
+        color: #000000;
+    }
+}
