@@ -11,7 +11,11 @@
     <body>
         
         {% block body %}{% endblock %}
-
+        <footer class="footer">
+            <div class="container">
+                <span class="text-muted">SingleRoom - &copy; avf, 2019</span>
+            </div>
+        </footer>
         <script src="https://kit.fontawesome.com/dbd522f0ef.js"></script>
         {% block javascripts %}
             {{ encore_entry_script_tags('js/app') }}
