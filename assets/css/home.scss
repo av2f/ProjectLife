@@ -2,6 +2,7 @@
 $cardColor: #b1c18c;
 $backgColor: #7fadc5;
 $titleContent: #f5853b;
+$buttonHover: rgba(12, 101, 69, 1);
 
 header.headImage {
     /* background: url('/img/trip.jpeg') no-repeat center center;*/
@@ -61,5 +62,15 @@ header.headImage {
     }
     .card-title {
         font-weight: bold;
+    }
+}
+
+.btn-register {
+    background-color: $cardColor;
+    color: #ffffff;
+    font-weight: bold;
+    &:hover {
+        background-color: $buttonHover;
+        color: #ffffff;
     }
 }

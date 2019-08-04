@@ -3,8 +3,9 @@
 
 $cardColor: #b1c18c;
 $buttonHover: rgba(12, 101, 69, 1);
+$footColor: #f5f5f5;
 
-body{
+body {
     margin-top: 60px;
 }
 
@@ -12,7 +13,7 @@ body{
     margin-top: 30px;
 }
 
-.card-header{
+.card-header {
     background-color: $cardColor;
 }
 
@@ -20,21 +21,26 @@ body{
     p {
         font-size: .7rem;
     }
-    #p-left {
-        text-align: left;
-    }
-    #p-right {
-        text-align: right;
-    }
     a {
         color: #000000;
     }
+    #p-left {
+        color: #000000;
+        text-align: left;
+    }
+    #p-right {
+        color: #000000;
+        text-align: right;
+    }
+    &.card-footer-logout {
+        background-color: $footColor;
+    }
 }
 
-.btn-login {
+.btn {
     background-color: $cardColor;
     color: #ffffff;
-    margin-top: 30px;
+    font-weight: bold;
     &:hover {
         background-color: $buttonHover;
         color: #ffffff;
