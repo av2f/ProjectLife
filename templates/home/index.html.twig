@@ -125,11 +125,14 @@
 {% block javascripts %}
     {{ parent() }}
     {{ encore_entry_script_tags('js/datepicker') }}
+    {{ encore_entry_script_tags('js/datepicker-fr') }}
     <script>
         $(document).ready(function(){
             $('.js-datepicker').datepicker({
-                format: 'yyyy-mm-dd',
-                language: 'fr'
+                format: 'dd-mm-yyyy',
+                language: 'fr',
+                orientation: "top auto",
+                startView: 2
             });
         });
     </script>
