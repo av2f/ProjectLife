@@ -13,12 +13,12 @@ use Symfony\Component\Validator\Constraints as Assert;
  * 
  * @UniqueEntity(
  *  fields = {"pseudo"},
- *  message = "Ce Pseudonyme existe déjà, merci d'en choisir un autre")
+ *  message = "Ce pseudonyme existe déjà, merci d'en choisir un autre")
  * )
  * 
  * @UniqueEntity(
  *  fields = {"email"},
- *  message = "Ce adresse mail existe déjà, merci d'en choisir une autre")
+ *  message = "Cette adresse mail existe déjà, merci d'en choisir une autre")
  * )
  * 
  */
@@ -56,12 +56,6 @@ class User implements UserInterface
 
     /**
      * @ORM\Column(type="string", length=255)
-     * 
-     */
-    private $password;
-
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
      * @Assert\NotBlank(
      *  message="Veuillez saisir un mot de passe (8 car. min)"
      * )
@@ -69,11 +63,21 @@ class User implements UserInterface
      *  min=8,
      *  minMessage="le mot de passe doit contenir au moins {{ limit }} caractères"
      * )
+     * 
+     */
+    private $password;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     *
      */
     private $avatar;
 
     /**
      * @ORM\Column(type="date")
+     * @Assert\NotNull(
+     *  message="Veuillez renseigner votre date de naissance"
+     * )
      */
     private $birthdayDate;
 
