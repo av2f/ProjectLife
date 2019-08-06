@@ -10,13 +10,22 @@ use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 class SecurityController extends AbstractController
 {
     /**
+     * Display and manage login page
+     * use Security/LoginFormAuthenticator
+     * Author : Frederic Parmentier
+     * CreatedAt : 2019/08/06
+     * 
      * @Route("/login", name="app_login")
+     *
+     * @param AuthenticationUtils $authenticationUtils
+     * @return Response
      */
     public function login(AuthenticationUtils $authenticationUtils): Response
     {
-        // if ($this->getUser()) {
-        //    $this->redirectToRoute('target_path');
-        // }
+        /* Managed by dans Security/LoginFormAuthenticator
+        if ($this->getUser()) {
+            $this->redirectToRoute('app_home');
+        }*/
 
         // get the login error if there is one
         $error = $authenticationUtils->getLastAuthenticationError();
@@ -30,6 +39,8 @@ class SecurityController extends AbstractController
     }
 
     /**
+     * Logout function. Nothing to do.
+     * 
      * @Route("/logout", name="app_logout")
      */
     public function logout()

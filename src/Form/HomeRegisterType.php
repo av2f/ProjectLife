@@ -33,7 +33,9 @@ class HomeRegisterType extends AbstractType
                 'widget' => 'single_text',
                 'html5' => false,
                 'label' => "Date de naissance",
-                'attr' => ['class' => 'js-datepicker']
+                'format' => 'dd-MM-yyyy',
+                'attr' => ['class' => 'js-datepicker'],
+                'invalid_message' => "Mauvais format de date"
             ]) 
             ->add('password', PasswordType::class, [
                 'label'=>"Saisissez un mot de passe",

@@ -25,11 +25,19 @@
                                 <h4><strong>Pas encore inscrit(e) ?</strong></h4>
                                 <h4><strong>C'est le moment de se lancer !</strong></h4>
                             </div>
-                             {{ form_start(form) }}
+                            {{ form_start(form) }}
                                 <div class="card-body">
                                     {{ form_row(form.pseudo) }}
                                     {{ form_row(form.email) }}
-                                    {{ form_row(form.birthdayDate)}}
+                                    {{ form_label(form.birthdayDate) }}
+                                    <div class="input-group date mb-3">
+                                        {{ form_widget(form.birthdayDate)}}
+                                        <div class="input-group-append">
+                                            <span class="input-group-text">
+                                                <i class="fas fa-calendar-alt"></i>
+                                            </span>
+                                        </div>
+                                    </div>
                                     {{ form_row(form.password) }}
                                </div>
                                 <div class="card-footer text-center">
@@ -127,12 +135,14 @@
     {{ encore_entry_script_tags('js/datepicker') }}
     {{ encore_entry_script_tags('js/datepicker-fr') }}
     <script>
+        // customize datepicker
         $(document).ready(function(){
             $('.js-datepicker').datepicker({
                 format: 'dd-mm-yyyy',
                 language: 'fr',
-                orientation: "top auto",
-                startView: 2
+                orientation: 'top auto',
+                startView: 2,
+                endDate: '-18y'
             });
         });
     </script>

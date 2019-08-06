@@ -13,7 +13,9 @@ use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 class HomeController extends AbstractController
 {
     /**
-     * Display home page with registry form
+     * Display home page with management of registry form
+     * Author : Frederic Parmentier
+     * CreatedAt : 2019/08/06
      * 
      * @Route("/", name="app_home")
      *
