@@ -15,7 +15,7 @@ class MainPageController extends AbstractController
     {
         $user=$this->getUser();
         return $this->render('mainpage/index.html.twig', [
-            'user' => $user,
+            'user' => $user
         ]);
     }
 }

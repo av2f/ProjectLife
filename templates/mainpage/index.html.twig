@@ -17,7 +17,8 @@
                         {% set imgAvatar = app.user.avatar %}
                     {% endif %}
                     <img src="{{ imgAvatar }}" class="avatar" alt="avatar de {{ app.user.pseudo }}">
-                    <h5 class="text-center mt-3">45 ans</h5>
+                    <h5 class="text-center mt-3">{{ app.user.getCalculateAge() }} ans</h5>
+                    <h5 class="text-center mt-2 mb-4">Inscrit(e) depuis le {{ app.user.createdAt|date('d/m/Y') }}</h5>
                 </div>
                 <h6>Complété à 20%</h6>
                 <div class="progress mt-2 mb-2">
@@ -39,9 +40,31 @@
                         <p class="card-text">Votre abonnement <strong>expire le 12/09/2019</strong> (dans 127 jours).</p>                    
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col mt-4 mr-3 ml-3 mb-2 labelProfile">
-                        <h5 class="text-center mt-1">Mon compte</h5>
+                 <div class="cardProfile card border-secondary mt-4 mb-3">
+                    <h5 class="cardProfile card-header text-center"><strong>Mon activité</strong></h5>
+                    <div class="cardProfile card-body">
+                        <table class="table table-hover">
+                            <tbody>
+                                <tr>
+                                    <th scope="row">
+                                        <a href="#"><i class="fas fa-envelope"></i>&nbsp;Messages</a>
+                                    </th>
+                                    <td class="text-right"><span class="badge badge-info">00</span></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">
+                                        <a href="#"><i class="far fa-eye"></i>&nbsp;Visites</a>
+                                    </th>
+                                    <td class="text-right"><span class="badge badge-info">02</span></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">
+                                        <a href="#"><i class="fas fa-plane-departure"></i>&nbsp;BizTrip planifié(s)</a>
+                                    </th>
+                                    <td class="text-right"><span class="badge badge-info">01</span></td>
+                                </tr>
+                            </tbody>
+                        </table>                
                     </div>
                 </div>
             </div>

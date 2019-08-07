@@ -238,4 +238,16 @@ class User implements UserInterface
         $this->modifiedAt = new \DateTime();
     }
 
+    /**
+     * Caclculate age with birthday date
+     * Author : Frederic Parmentier
+     * Created at : 2019/08/07
+     *
+     * @return void
+     */
+    public function getCalculateAge(){
+        $today = new \DateTime('now');
+        $age = $today->diff($this->getBirthdayDate());
+        return $age->format('%y');
+    }
 }
