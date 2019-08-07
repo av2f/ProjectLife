@@ -86,7 +86,7 @@ class LoginFormAuthenticator extends AbstractFormLoginAuthenticator
         }
 
        // Changer la route -> mettre vers le page principale quand elle sera créé
-        return new RedirectResponse($this->urlGenerator->generate('app_myprofile'));
+        return new RedirectResponse($this->urlGenerator->generate('app_mainpage'));
         //throw new \Exception('TODO: provide a valid redirect inside '.__FILE__);
     }
 

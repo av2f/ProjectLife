@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Bienvenue{% endblock %}
+
+{% block body %}
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-3 colProfile">
+                <div class="row">
+                    <div class="col m-1 labelProfile">
+                        <h2 class="text-center">{{ app.user.pseudo }}</h2>
+                    </div>
+                </div>
+                <div class="text-center mt-2">
+                    {% set imgAvatar = "./img/avatar-default.png" %}
+                    {% if app.user.avatar != null %}
+                        {% set imgAvatar = app.user.avatar %}
+                    {% endif %}
+                    <img src="{{ imgAvatar }}" class="avatar" alt="avatar de {{ app.user.pseudo }}">
+                    <h5 class="text-center mt-3">45 ans</h5>
+                </div>
+                <h6>Complété à 20%</h6>
+                <div class="progress mt-2 mb-2">
+                    {# A terme, remplacer cette variable par le calcul du pourcentage #}
+                    {% set completed = 25 %}
+                    {% if completed <= 50 %}
+                        {% set progressClass = "bg-warning" %}
+                    {% elseif completed > 50 and completed <= 75 %}
+                        {% set progressClass = "bg-info" %}
+                    {% else %}
+                        {% set progressClass = "bg-success" %}
+                    {% endif %}
+                    <div class="progress-bar {{ progressClass }}" role="progressbar" style="width:{{ completed }}%" aria-valuenow="{{ completed }}" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+                <div class="cardProfile card border-secondary mt-4 mb-3">
+                    <h5 class="cardProfile card-header text-center"><strong>Mon abonnement</strong></h5>
+                    <div class="cardProfile card-body">
+                        <p class="card-text">Vous faites parti du BizTripJoy <strong>Régulier</strong> depuis le 12/01/2019.</p>
+                        <p class="card-text">Votre abonnement <strong>expire le 12/09/2019</strong> (dans 127 jours).</p>                    
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col mt-4 mr-3 ml-3 mb-2 labelProfile">
+                        <h5 class="text-center mt-1">Mon compte</h5>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-9">
+                <h1 class="text-center">Ola coco</h1>
+            </div>
+        </div>
+    </div>
+{% endblock %}
