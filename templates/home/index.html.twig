@@ -27,6 +27,17 @@
                             </div>
                             {{ form_start(form) }}
                                 <div class="card-body">
+                                    <div class="btn-group btn-group-toggle mb-3" data-toggle="buttons">
+                                        <span class="my-auto">Je suis&nbsp;&nbsp;</span>
+                                        <label class="btn active" style="background-color:#ff98b9; color:white; max-width:10rem">
+                                            <input type="radio" name="options" id="option1" autocomplete="off" checked="">
+                                            <i class="fas fa-female"></i>&nbsp;Une femme
+                                        </label>
+                                        <label class="btn btn-primary" style="max-width:10rem">
+                                            <input type="radio" name="options" id="option2" autocomplete="off">
+                                            <i class="fas fa-male"></i>&nbsp;Un Homme
+                                        </label>
+                                    </div>
                                     {{ form_row(form.pseudo) }}
                                     {{ form_row(form.email) }}
                                     {{ form_label(form.birthdayDate) }}

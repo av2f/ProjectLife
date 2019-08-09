@@ -96,6 +96,12 @@ class User implements UserInterface
      */
     private $modifiedAt;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Gender", inversedBy="gender")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $gender;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -249,5 +255,17 @@ class User implements UserInterface
         $today = new \DateTime('now');
         $age = $today->diff($this->getBirthdayDate());
         return $age->format('%y');
+    }
+
+    public function getGender(): ?Gender
+    {
+        return $this->gender;
+    }
+
+    public function setGender(?Gender $gender): self
+    {
+        $this->gender = $gender;
+
+        return $this;
     }
 }

@@ -7,6 +7,7 @@
 /* colors */
 $greyColor: #f5f5f5;
 $profileColor: #7fadc5;
+$cardA : #3f4253;
 
 .container-fluid {
   margin-top: 80px;
@@ -37,7 +38,7 @@ $profileColor: #7fadc5;
   position: relative;
   bottom: 0;
   width: 100%;
-  margin-top: 20px;
+  margin-top: 10px;
   height: 60px; /* Set the fixed height of the footer here */
   line-height: 60px; /* Vertically center the text there */
   background-color: $greyColor;
@@ -45,7 +46,8 @@ $profileColor: #7fadc5;
 
 .colProfile {
   background-color: $profileColor;
-  color: #ffffff; 
+  color: #ffffff;
+  min-height: 100vh;
 }
 
 .labelProfile {
@@ -55,6 +57,12 @@ $profileColor: #7fadc5;
 }
 
 .cardProfile {
+  a {
+    color: $cardA;
+    &:hover {
+      color: $profileColor
+    }
+  }
   &.card {
     color: $profileColor;
   }

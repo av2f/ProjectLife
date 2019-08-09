@@ -9,12 +9,12 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class MainPageController extends AbstractController
 {
     /**
-     * @Route("/mainpage", name="app_mainpage")
+     * @Route("/main", name="app_main")
      */
     public function index()
     {
         $user=$this->getUser();
-        return $this->render('mainpage/index.html.twig', [
+        return $this->render('main/index.html.twig', [
             'user' => $user
         ]);
     }
