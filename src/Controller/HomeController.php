@@ -3,7 +3,9 @@
 namespace App\Controller;
 
 use App\Entity\User;
+use App\Entity\Gender;
 use App\Form\HomeRegisterType;
+use App\Repository\GenderRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
@@ -24,7 +26,7 @@ class HomeController extends AbstractController
      * @param EntityManagerInterface $entityManager
      * @return void
      */
-    public function index(Request $request, UserPasswordEncoderInterface $passwordEncoder, EntityManagerInterface $entityManager ) {
+    public function index(Request $request, UserPasswordEncoderInterface $passwordEncoder, EntityManagerInterface $entityManager, GenderRepository $repo ) {
         $user = new User;
 
         // Create form
@@ -33,7 +35,14 @@ class HomeController extends AbstractController
         // handle the submit
         $form->handleRequest($request);
 
+        
+
         if ($form->isSubmitted() && $form->isValid()){
+            $genderId = $form->get('gender')->getData();
+            $gender = new Gender();
+            $gender = $repo->find($genderId);
+            $user->setGender($gender);
+
             // encode password
             $password=$passwordEncoder->encodePassword($user, $user->getPassword());
             $user->setPassword($password);
@@ -41,6 +50,8 @@ class HomeController extends AbstractController
             // store the user
             $entityManager->persist($user);
             $entityManager->flush();
+
+            // rajouter un addflash
 
             return $this->redirectToRoute('app_home');
 

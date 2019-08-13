@@ -218,10 +218,10 @@ class User implements UserInterface
         return null;
     }
     public function eraseCredentials() {}
+    
 
     // lifecycleCallbacks functions
 
-    
     /**
      * Generate the date of creation of profile in prePersist
      * 

@@ -6,10 +6,11 @@ use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
-use Symfony\Component\Form\Extension\Core\Type\DateType;
 
 class HomeRegisterType extends AbstractType
 {
@@ -43,6 +44,17 @@ class HomeRegisterType extends AbstractType
                 'attr'=>[
                     'placeholder'=>"Mot de passe"
                 ]
+            ])
+            // for gender
+            ->add('gender', ChoiceType::class, [
+                'label' => 'Je suis',
+                'choices'  => [
+                    'Une femme' => 1,
+                    'Un homme' => 2
+                ],
+                'mapped' => false,
+                'expanded' => true,
+                'multiple' => false
             ])
         ;
     }

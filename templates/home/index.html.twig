@@ -1,5 +1,7 @@
 {% extends 'base.html.twig' %}
 
+{% form_theme form _self %}
+
 {% block title %}Bienvenue...{% endblock %}
 {% block stylesheets %}
     {{ parent() }}
@@ -27,17 +29,7 @@
                             </div>
                             {{ form_start(form) }}
                                 <div class="card-body">
-                                    <div class="btn-group btn-group-toggle mb-3" data-toggle="buttons">
-                                        <span class="my-auto">Je suis&nbsp;&nbsp;</span>
-                                        <label class="btn active" style="background-color:#ff98b9; color:white; max-width:10rem">
-                                            <input type="radio" name="options" id="option1" autocomplete="off" checked="">
-                                            <i class="fas fa-female"></i>&nbsp;Une femme
-                                        </label>
-                                        <label class="btn btn-primary" style="max-width:10rem">
-                                            <input type="radio" name="options" id="option2" autocomplete="off">
-                                            <i class="fas fa-male"></i>&nbsp;Un Homme
-                                        </label>
-                                    </div>
+                                    {{ form_widget(form.gender) }}
                                     {{ form_row(form.pseudo) }}
                                     {{ form_row(form.email) }}
                                     {{ form_label(form.birthdayDate) }}
@@ -141,6 +133,33 @@
         </div>
     </div>
 {% endblock %}
+
+{# Render gender button radio #}
+{% block _home_register_gender_widget %}
+    <div class="btn-group btn-group-toggle mb-3" data-toggle="buttons"> 
+        <span class="my-auto mr-2">{{ form_label(form) }}</span>
+        {% for key,choice in form.vars.choices %}
+            <label class="btn 
+            {% if choice.value == 1 %}
+                btn-primary active
+            {% else %}
+                btn-primary
+            {% endif %}
+            ">
+                <input type="radio" 
+                name="{{ form.vars.full_name }}" id="{{ form.vars.id }}_{{ key }}"
+                value="{{ choice.value }}" autocomplete="off"
+                {% if choice.value == 1 %}checked{% endif %} >
+                {% set icon = "fas fa-male" %}
+                {% if choice.value == 1 %}
+                    {% set icon = "fas fa-female" %}
+                {% endif %}
+                <i class="{{ icon }} mr-2"></i>{{ choice.label }}
+            </label>
+        {% endfor %}
+    </div>
+{% endblock %}
+
 {% block javascripts %}
     {{ parent() }}
     {{ encore_entry_script_tags('js/datepicker') }}
