@@ -16,7 +16,7 @@
                     {% if app.user.avatar != null %}
                         {% set imgAvatar = app.user.avatar %}
                     {% endif %}
-                    <img src="{{ imgAvatar }}" class="avatar" alt="avatar de {{ app.user.pseudo }}">
+                    <img src="{{ imgAvatar }}" class="avatar" alt="Avatar de {{ app.user.avatar }}">
                     <h5 class="text-center mt-3">{{ app.user.getCalculateAge() }} ans</h5>
                     <h5 class="text-center mt-2 mb-4">Inscrit(e) depuis le {{ app.user.createdAt|date('d/m/Y') }}</h5>
                 </div>

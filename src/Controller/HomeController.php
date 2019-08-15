@@ -51,9 +51,12 @@ class HomeController extends AbstractController
             $entityManager->persist($user);
             $entityManager->flush();
 
-            // rajouter un addflash
+            $this->addFlash(
+                'success',
+                '<h4>Félicitations et bienvenue '.$form->get('pseudo')->getData().' !</h4><h5>Vous pouvez désormais vous connecter.</h5>'
+            );
 
-            return $this->redirectToRoute('app_home');
+            return $this->redirectToRoute('app_login');
 
         }
         
