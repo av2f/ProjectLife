@@ -223,14 +223,15 @@ class User implements UserInterface
     // lifecycleCallbacks functions
 
     /**
-     * Generate the date of creation of profile in prePersist
+     * Generate the date of creation and default avatar image in prePersist
      * 
      * @ORM\PrePersist
      *
      * @return void
      */
-    public function setCreatedAtDate(){
+    public function setInitialUser(){
         $this->createdAt = new \DateTime();
+        $this->avatar = "./img/Librairy/defaultAvatar.png";
     }
 
     /**
