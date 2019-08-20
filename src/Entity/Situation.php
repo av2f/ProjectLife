@@ -5,9 +5,9 @@ namespace App\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass="App\Repository\GenderRepository")
+ * @ORM\Entity(repositoryClass="App\Repository\SituationRepository")
  */
-class Gender
+class Situation
 {
     /**
      * @ORM\Id()
@@ -19,21 +19,21 @@ class Gender
     /**
      * @ORM\Column(type="string", length=50)
      */
-    private $title;
+    private $type;
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getTitle(): ?string
+    public function getType(): ?string
     {
-        return $this->title;
+        return $this->type;
     }
 
-    public function setTitle(string $title): self
+    public function setType(string $type): self
     {
-        $this->title = $title;
+        $this->type = $type;
 
         return $this;
     }

@@ -22,7 +22,7 @@ class SecurityController extends AbstractController
      */
     public function login(AuthenticationUtils $authenticationUtils): Response
     {
-        /* Managed by dans Security/LoginFormAuthenticator
+        /* Managed by Security/LoginFormAuthenticator
         if ($this->getUser()) {
             $this->redirectToRoute('app_home');
         }*/

@@ -20,7 +20,6 @@ use Symfony\Component\Validator\Constraints as Assert;
  *  fields = {"email"},
  *  message = "Cette adresse mail existe déjà, merci d'en choisir une autre")
  * )
- * 
  */
 class User implements UserInterface
 {
@@ -63,15 +62,18 @@ class User implements UserInterface
      *  min=8,
      *  minMessage="le mot de passe doit contenir au moins {{ limit }} caractères"
      * )
-     * 
      */
     private $password;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     *
+     * @ORM\Column(type="string", length=100, nullable=true)
      */
-    private $avatar;
+    private $firstName;
+
+    /**
+     * @ORM\Column(type="string", length=100, nullable=true)
+     */
+    private $lastName;
 
     /**
      * @ORM\Column(type="date")
@@ -82,9 +84,24 @@ class User implements UserInterface
     private $birthdayDate;
 
     /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $avatar;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $profession;
+
+    /**
      * @ORM\Column(type="text", nullable=true)
      */
     private $description;
+
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $subscribed;
 
     /**
      * @ORM\Column(type="datetime")
@@ -94,13 +111,18 @@ class User implements UserInterface
     /**
      * @ORM\Column(type="datetime", nullable=true)
      */
-    private $modifiedAt;
+    private $updatedAt;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Gender", inversedBy="gender")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Gender")
      * @ORM\JoinColumn(nullable=false)
      */
     private $gender;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Situation")
+     */
+    private $situation;
 
     public function getId(): ?int
     {
@@ -143,14 +165,26 @@ class User implements UserInterface
         return $this;
     }
 
-    public function getAvatar(): ?string
+    public function getFirstName(): ?string
     {
-        return $this->avatar;
+        return $this->firstName;
     }
 
-    public function setAvatar(?string $avatar): self
+    public function setFirstName(?string $firstName): self
     {
-        $this->avatar = $avatar;
+        $this->firstName = $firstName;
+
+        return $this;
+    }
+
+    public function getLastName(): ?string
+    {
+        return $this->lastName;
+    }
+
+    public function setLastName(?string $lastName): self
+    {
+        $this->lastName = $lastName;
 
         return $this;
     }
@@ -167,6 +201,30 @@ class User implements UserInterface
         return $this;
     }
 
+    public function getAvatar(): ?string
+    {
+        return $this->avatar;
+    }
+
+    public function setAvatar(string $avatar): self
+    {
+        $this->avatar = $avatar;
+
+        return $this;
+    }
+
+    public function getProfession(): ?string
+    {
+        return $this->profession;
+    }
+
+    public function setProfession(?string $profession): self
+    {
+        $this->profession = $profession;
+
+        return $this;
+    }
+
     public function getDescription(): ?string
     {
         return $this->description;
@@ -175,6 +233,18 @@ class User implements UserInterface
     public function setDescription(?string $description): self
     {
         $this->description = $description;
+
+        return $this;
+    }
+
+    public function getSubscribed(): ?bool
+    {
+        return $this->subscribed;
+    }
+
+    public function setSubscribed(bool $subscribed): self
+    {
+        $this->subscribed = $subscribed;
 
         return $this;
     }
@@ -191,14 +261,38 @@ class User implements UserInterface
         return $this;
     }
 
-    public function getModifiedAt(): ?\DateTimeInterface
+    public function getUpdatedAt(): ?\DateTimeInterface
     {
-        return $this->modifiedAt;
+        return $this->updatedAt;
     }
 
-    public function setModifiedAt(?\DateTimeInterface $modifiedAt): self
+    public function setUpdatedAt(?\DateTimeInterface $updatedAt): self
     {
-        $this->modifiedAt = $modifiedAt;
+        $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+    public function getGender(): ?Gender
+    {
+        return $this->gender;
+    }
+
+    public function setGender(?Gender $gender): self
+    {
+        $this->gender = $gender;
+
+        return $this;
+    }
+
+    public function getSituation(): ?Situation
+    {
+        return $this->situation;
+    }
+
+    public function setSituation(?Situation $situation): self
+    {
+        $this->situation = $situation;
 
         return $this;
     }
@@ -218,7 +312,6 @@ class User implements UserInterface
         return null;
     }
     public function eraseCredentials() {}
-    
 
     // lifecycleCallbacks functions
 
@@ -231,7 +324,12 @@ class User implements UserInterface
      */
     public function setInitialUser(){
         $this->createdAt = new \DateTime();
-        $this->avatar = "./img/Librairy/defaultAvatar.png";
+        if (is_null($this->getAvatar())) {
+            $this->setAvatar("./img/Librairy/defaultAvatar.png");
+        }
+        if (is_null($this->getSubscribed())){
+            $this->setSubscribed(false);
+        }
     }
 
     /**
@@ -256,17 +354,5 @@ class User implements UserInterface
         $today = new \DateTime('now');
         $age = $today->diff($this->getBirthdayDate());
         return $age->format('%y');
-    }
-
-    public function getGender(): ?Gender
-    {
-        return $this->gender;
-    }
-
-    public function setGender(?Gender $gender): self
-    {
-        $this->gender = $gender;
-
-        return $this;
     }
 }
