@@ -16,24 +16,33 @@
                     <h5 class="text-center mt-3">{{ app.user.getCalculateAge() }} ans</h5>
                     <h5 class="text-center mt-2 mb-4">Inscrit(e) depuis le {{ app.user.createdAt|date('d/m/Y') }}</h5>
                 </div>
-                <h6>Complété à 20%</h6>
+                <h6>Complété à {{ user.completed }}%</h6>
                 <div class="progress mt-2 mb-2">
                     {# A terme, remplacer cette variable par le calcul du pourcentage #}
-                    {% set completed = 25 %}
-                    {% if completed <= 50 %}
+                    {% if user.completed <= 50 %}
                         {% set progressClass = "bg-warning" %}
-                    {% elseif completed > 50 and completed <= 75 %}
+                    {% elseif user.completed > 50 and user.completed <= 75 %}
                         {% set progressClass = "bg-info" %}
                     {% else %}
                         {% set progressClass = "bg-success" %}
                     {% endif %}
-                    <div class="progress-bar {{ progressClass }}" role="progressbar" style="width:{{ completed }}%" aria-valuenow="{{ completed }}" aria-valuemin="0" aria-valuemax="100"></div>
+                    <div class="progress-bar {{ progressClass }}" role="progressbar" style="width:{{ user.completed }}%" aria-valuenow="{{ user.completed }}" aria-valuemin="0" aria-valuemax="100"></div>
                 </div>
                 <div class="cardProfile card border-secondary mt-4 mb-3">
                     <h5 class="cardProfile card-header text-center"><strong>Mon abonnement</strong></h5>
                     <div class="cardProfile card-body">
-                        <p class="card-text">Vous êtes un BizTripJoy <strong>Régulier</strong> depuis le 12/01/2019.</p>
-                        <p class="card-text">Votre abonnement <strong>expire le 12/09/2019</strong> (dans 127 jours).</p>                
+                        {% if not user.subscribed %}
+                            <p class="card-text">{{ user.gender.title }}</p>
+                            <p class="card-text">Vous n'avez souscrit à aucun abonnement.</p>
+                            <div class="text-center">
+                            <a href="#">
+                                <button type="button" class="btn btn-primary"><i class="far fa-share-square"></i>&nbsp;m'abonner</button>
+                            </a>
+                            </div>
+                        {% else %}
+                            <p class="card-text">Vous êtes un BizTripJoy <strong>Régulier</strong> depuis le 12/01/2019.</p>
+                            <p class="card-text">Votre abonnement <strong>expire le 12/09/2019</strong> (dans 127 jours).</p> 
+                        {% endif %}              
                     </div>
                 </div>
                  <div class="cardProfile card border-secondary mt-4 mb-3">

@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
@@ -123,6 +125,21 @@ class User implements UserInterface
      * @ORM\ManyToOne(targetEntity="App\Entity\Situation")
      */
     private $situation;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Subscription", mappedBy="subscriber")
+     */
+    private $subscriptions;
+
+    /**
+     * @ORM\Column(type="smallint")
+     */
+    private $completed;
+
+    public function __construct()
+    {
+        $this->subscriptions = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -354,5 +371,48 @@ class User implements UserInterface
         $today = new \DateTime('now');
         $age = $today->diff($this->getBirthdayDate());
         return $age->format('%y');
+    }
+
+    /**
+     * @return Collection|Subscription[]
+     */
+    public function getSubscriptions(): Collection
+    {
+        return $this->subscriptions;
+    }
+
+    public function addSubscription(Subscription $subscription): self
+    {
+        if (!$this->subscriptions->contains($subscription)) {
+            $this->subscriptions[] = $subscription;
+            $subscription->setSubscriber($this);
+        }
+
+        return $this;
+    }
+
+    public function removeSubscription(Subscription $subscription): self
+    {
+        if ($this->subscriptions->contains($subscription)) {
+            $this->subscriptions->removeElement($subscription);
+            // set the owning side to null (unless already changed)
+            if ($subscription->getSubscriber() === $this) {
+                $subscription->setSubscriber(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getCompleted(): ?int
+    {
+        return $this->completed;
+    }
+
+    public function setCompleted(int $completed): self
+    {
+        $this->completed = $completed;
+
+        return $this;
     }
 }
