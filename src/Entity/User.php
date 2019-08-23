@@ -116,13 +116,12 @@ class User implements UserInterface
     private $updatedAt;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Gender")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\Column(type="string", length=2)
      */
     private $gender;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Situation")
+     * @ORM\Column(type="string", length=2, nullable=true)
      */
     private $situation;
 
@@ -290,24 +289,24 @@ class User implements UserInterface
         return $this;
     }
 
-    public function getGender(): ?Gender
+    public function getGender(): ?string
     {
         return $this->gender;
     }
 
-    public function setGender(?Gender $gender): self
+    public function setGender(?string $gender): self
     {
         $this->gender = $gender;
 
         return $this;
     }
 
-    public function getSituation(): ?Situation
+    public function getSituation(): ?string
     {
         return $this->situation;
     }
 
-    public function setSituation(?Situation $situation): self
+    public function setSituation(?string $situation): self
     {
         $this->situation = $situation;
 

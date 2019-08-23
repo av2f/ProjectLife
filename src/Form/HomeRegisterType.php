@@ -49,8 +49,8 @@ class HomeRegisterType extends AbstractType
             ->add('gender', ChoiceType::class, [
                 'label' => 'Je suis',
                 'choices'  => [
-                    'Une femme' => 1,
-                    'Un homme' => 2
+                    'Une femme' => 'W',
+                    'Un homme' => 'M'
                 ],
                 'mapped' => false,
                 'expanded' => true,

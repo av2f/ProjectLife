@@ -6,8 +6,6 @@ use Faker;
 use DateTime;
 use DateInterval;
 use App\Entity\User;
-use App\Entity\Gender;
-use App\Entity\Situation;
 use App\Entity\InterestType;
 use App\Entity\SubscribType;
 use App\Entity\Subscription;
@@ -45,10 +43,10 @@ class AppFixtures extends Fixture
     public function load(ObjectManager $manager)
     {
         $faker = Faker\Factory::create('fr_FR');
-        // Define Genders
-        $genders=array('Femme', 'Homme');
-        // Define Situations
-        $situations=array('En couple', 'Célibataire', 'Veuve/veuf');
+        // Define Genders (W=Woman / M=Man)
+        $genders=array('W', 'M');
+        // Define Situations (C=Couple / S=Single / W=Widow)
+        $situations=array('C', 'S', 'W');
         // Define Interests
         $interests=array('Littérature', 'Cinéma', 'Théatre', 'Concert/Opéra',
             'Musique', 'Art/Histoire', 'Cuisine', 'Nouvelles technologies',
@@ -92,24 +90,6 @@ class AppFixtures extends Fixture
 
         $subscribes=array(true, false);
         
-        // Set gender
-        $genderArray=[];
-        foreach($genders as $value) {
-            $gender=new Gender();
-            $gender->setTitle($value);
-            $manager->persist($gender);
-            $genderArray[]=$gender;
-        }
-
-        // Set situation
-        $situationArray=[];
-        foreach($situations as $value){
-            $situation=new Situation();
-            $situation->setType($value);
-            $manager->persist($situation);
-            $situationArray[]=$situation;
-        }
-
         // Set interest type
         foreach ($interests as $value){
             $interest=new InterestType();
@@ -138,18 +118,18 @@ class AppFixtures extends Fixture
             $subscribed=$subscribes[mt_rand(0, count($subscribes)-1)];
 
             // generate randomly situation
-            $situation=$situationArray[mt_rand(0,count($situationArray)-1)];
+            $situation=$situations[mt_rand(0,count($situations)-1)];
 
             // generate randomly the gender
-            $gender=$genderArray[mt_rand(0, count($genderArray)-1)];
+            $gender=$genders[mt_rand(0, count($genders)-1)];
 
              // Generate firstname and avatar following the gender
-            $firstName = ($gender->getTitle()=='Homme' ? $faker->firstNameMale : $faker->firstNameFemale);
+            $firstName = ($gender=='M' ? $faker->firstNameMale : $faker->firstNameFemale);
 
             // Generate a picture
             $picture='https://randomuser.me/api/portraits/';
             $pictureId=$faker->numberbetween(1,99) . '.jpg';
-            $picture .= ($gender->getTitle()=='Homme' ? 'men/' : 'women/') .$pictureId;
+            $picture .= ($gender=='M' ? 'men/' : 'women/') .$pictureId;
             
             // define a birthday date
             $birthDate= new \DateTime();

@@ -33,6 +33,5 @@ final class Version20190821141112 extends AbstractMigration
         $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'mysql', 'Migration can only be executed safely on \'mysql\'.');
 
         $this->addSql('DROP TABLE subscription');
-        $this->addSql('ALTER TABLE user CHANGE profession profession VARCHAR(255) DEFAULT NULL COLLATE utf8mb4_unicode_ci');
     }
 }

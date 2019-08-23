@@ -19,6 +19,10 @@ class SubscriptionRepository extends ServiceEntityRepository
         parent::__construct($registry, Subscription::class);
     }
 
+    public function findLastSubscription(){
+        
+    }
+
     // /**
     //  * @return Subscription[] Returns an array of Subscription objects
     //  */
