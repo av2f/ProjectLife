@@ -17,7 +17,7 @@ class HomeController extends AbstractController
      * Author : Frederic Parmentier
      * CreatedAt : 2019/08/06
      * 
-     * @Route("/", name="app_home")
+     * @Route("/", name="btj_home")
      *
      * @param Request $request
      * @param UserPasswordEncoderInterface $passwordEncoder
@@ -55,7 +55,7 @@ class HomeController extends AbstractController
                 '<h4>Félicitations et bienvenue '.$form->get('pseudo')->getData().' !</h4><h5>Vous pouvez désormais vous connecter.</h5>'
             );
 
-            return $this->redirectToRoute('app_login');
+            return $this->redirectToRoute('btj_login');
 
         }
         

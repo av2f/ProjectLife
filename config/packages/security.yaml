@@ -22,9 +22,9 @@ security:
                 authenticators:
                     - App\Security\LoginFormAuthenticator
             logout:
-                path: app_logout
+                path: btj_logout
                 # where to redirect after logout
-                target: app_home
+                target: btj_home
 
             # activate different ways to authenticate
             # https://symfony.com/doc/current/security.html#firewalls-authentication

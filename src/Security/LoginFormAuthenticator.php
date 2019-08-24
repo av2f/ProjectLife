@@ -38,7 +38,7 @@ class LoginFormAuthenticator extends AbstractFormLoginAuthenticator
 
     public function supports(Request $request)
     {
-        return 'app_login' === $request->attributes->get('_route')
+        return 'btj_login' === $request->attributes->get('_route')
             && $request->isMethod('POST');
     }
 
@@ -86,12 +86,12 @@ class LoginFormAuthenticator extends AbstractFormLoginAuthenticator
         }
 
        // Changer la route -> mettre vers le page principale quand elle sera créé
-        return new RedirectResponse($this->urlGenerator->generate('app_main'));
+        return new RedirectResponse($this->urlGenerator->generate('btj_main'));
         //throw new \Exception('TODO: provide a valid redirect inside '.__FILE__);
     }
 
     protected function getLoginUrl()
     {
-        return $this->urlGenerator->generate('app_login');
+        return $this->urlGenerator->generate('btj_login');
     }
 }
