@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Repository\SubscriptionRepository;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
 class MainPageController extends AbstractController
 {
@@ -12,6 +13,9 @@ class MainPageController extends AbstractController
      * display the main page
      *
      * @Route("/main", name="app_main")
+     * 
+     * Can access only if login ok
+     * @isGranted("ROLE_USER")
      *
      * @param SubscriptionRepository $subRepo
      * @return void
