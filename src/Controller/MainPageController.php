@@ -9,23 +9,20 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class MainPageController extends AbstractController
 {
     /**
+     * display the main page
+     *
      * @Route("/main", name="app_main")
+     *
+     * @param SubscriptionRepository $subRepo
+     * @return void
      */
     public function index(SubscriptionRepository $subRepo)
     {
         $user=$this->getUser();
-        $subscription = $subRepo -> findOneBy([
-            'subscriber' => $user,
-            'active' => true,
-        ]);
-        $test="abonné";
-        if (!$user->getSubscribed()) {
-            $test="pas abonné";
-        }
         return $this->render('main/index.html.twig', [
             'user' => $user,
-            'test' => $test,
-            'subscription' => $subscription
+            // retrieve the last subscription / null if never subscription
+            'subscription' => $subRepo -> findLastSubscription($user)
         ]);
     }
 }

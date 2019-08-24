@@ -5,75 +5,8 @@
 {% block body %}
     <div class="container-fluid">
         <div class="row">
-            <div class="col-lg-3 colProfile">
-                <div class="row">
-                    <div class="col m-1 labelProfile">
-                        <h2 class="text-center">{{ app.user.pseudo }}</h2>
-                    </div>
-                </div>
-                <div class="text-center mt-2">
-                    <img src="{{ app.user.avatar }}" class="avatar" alt="Avatar de {{ app.user.pseudo }}">
-                    <h5 class="text-center mt-3">{{ app.user.getCalculateAge() }} ans</h5>
-                    <h5 class="text-center mt-2 mb-4">Inscrit(e) depuis le {{ app.user.createdAt|date('d/m/Y') }}</h5>
-                </div>
-                <h6>Complété à {{ user.completed }}%</h6>
-                <div class="progress mt-2 mb-2">
-                    {# A terme, remplacer cette variable par le calcul du pourcentage #}
-                    {% if user.completed <= 50 %}
-                        {% set progressClass = "bg-warning" %}
-                    {% elseif user.completed > 50 and user.completed <= 75 %}
-                        {% set progressClass = "bg-info" %}
-                    {% else %}
-                        {% set progressClass = "bg-success" %}
-                    {% endif %}
-                    <div class="progress-bar {{ progressClass }}" role="progressbar" style="width:{{ user.completed }}%" aria-valuenow="{{ user.completed }}" aria-valuemin="0" aria-valuemax="100"></div>
-                </div>
-                <div class="cardProfile card border-secondary mt-4 mb-3">
-                    <h5 class="cardProfile card-header text-center"><strong>Mon abonnement</strong></h5>
-                    <div class="cardProfile card-body">
-                        {{ subscription.subscriberType.type }}  {{ subscription.subscribBeginAt | date("d/m/Y") }}
-                        {% if not user.subscribed %}
-                            <p class="card-text text-center">Vous n'avez souscrit à aucun abonnement.</p>
-                            <hr>
-                            <div class="text-center">
-                            <a href="#">
-                                <button type="button" class="btn btn-info btn-sm"><i class="far fa-share-square"></i>&nbsp;m'abonner</button>
-                            </a>
-                            </div>
-                        {% else %}
-                            <p class="card-text">Vous êtes un BizTripJoy <strong>Régulier</strong> depuis le 12/01/2019.</p>
-                            <p class="card-text">Votre abonnement <strong>expire le 12/09/2019</strong> (dans 127 jours).</p> 
-                        {% endif %}              
-                    </div>
-                </div>
-                 <div class="cardProfile card border-secondary mt-4 mb-3">
-                    <h5 class="cardProfile card-header text-center"><strong>Mon activité</strong></h5>
-                    <div class="cardProfile card-body">
-                        <table class="table table-hover">
-                            <tbody>
-                                <tr>
-                                    <th scope="row">
-                                        <a href="#"><i class="fas fa-envelope"></i>&nbsp;Messages</a>
-                                    </th>
-                                    <td class="text-right"><span class="badge badge-info">00</span></td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">
-                                        <a href="#"><i class="far fa-eye"></i>&nbsp;Visites</a>
-                                    </th>
-                                    <td class="text-right"><span class="badge badge-info">02</span></td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">
-                                        <a href="#"><i class="fas fa-plane-departure"></i>&nbsp;BizTrip planifié(s)</a>
-                                    </th>
-                                    <td class="text-right"><span class="badge badge-info">01</span></td>
-                                </tr>
-                            </tbody>
-                        </table>                
-                    </div>
-                </div>
-            </div>
+            {# diplay the profile info #}
+            {% include './partials/_profileInfo.html.twig' %}
             <div class="col-lg-9">
                 <h1 class="text-center">Derniers articles</h1>
             </div>
