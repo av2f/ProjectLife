@@ -9,25 +9,24 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
-use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
-use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 
-class HomeRegisterType extends AbstractType
+class ProfileType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('pseudo', TextType::class, [
-                'label'=>"Pseudonyme",
-                'help' => "Longueur minimale : 5 caractères",
+            //->add('gender')
+            //->add('password')
+            ->add('firstName', TextType::class, [
+                'label'=>"Prénom",
                 'attr'=>[
-                    'placeholder'=>"Choisissez un Pseudonyme"
+                    'placeholder'=>"Saisissez votre prénom"
                 ]
             ])
-            ->add('email', EmailType::class, [
-                'label'=>"Email",
+            ->add('lastName', TextType::class, [
+                'label'=>"Nom",
                 'attr'=>[
-                    'placeholder'=>"Saisissez votre Email"
+                    'placeholder'=>"Saisissez votre Nom"
                 ]
             ])
             ->add('birthdayDate', DateType::class, [
@@ -38,24 +37,20 @@ class HomeRegisterType extends AbstractType
                 'attr' => ['class' => 'js-datepicker'],
                 'invalid_message' => "Mauvais format de date"
             ])
-            ->add('password', PasswordType::class, [
-                'label'=>"Saisissez un mot de passe",
-                'help'=> "longueur minimale : 8 caractères",
+            ->add('email', EmailType::class, [
+                'label'=>"Email",
                 'attr'=>[
-                    'placeholder'=>"Mot de passe"
+                    'placeholder'=>"Saisissez votre Email"
                 ]
             ])
-            // for gender
-            ->add('gender', ChoiceType::class, [
-                'label' => 'Je suis',
-                'choices'  => [
-                    'Une femme' => 'W',
-                    'Un homme' => 'M'
-                ],
-                'mapped' => false,
-                'expanded' => true,
-                'multiple' => false
+            //->add('situation')
+            ->add('profession', TextType::class, [
+                'label'=>"Profession",
+                'attr'=>[
+                    'placeholder'=>"Saisissez votre profession"
+                ]
             ])
+            //->add('description')
         ;
     }
 

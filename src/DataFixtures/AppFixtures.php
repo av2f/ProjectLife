@@ -69,7 +69,7 @@ class AppFixtures extends Fixture
                 'price' => 29,99 
              ],
              [
-                'type' => 'Temporaire',
+                'type' => 'Temporaire/Temporaire',
                 'duration' => 3,
                 'durationType' => 'M',
                 'price' => 74.97 

@@ -33,7 +33,7 @@
                                     {{ form_row(form.pseudo) }}
                                     {{ form_row(form.email) }}
                                     {{ form_label(form.birthdayDate) }}
-                                    <div class="input-group date mb-3">
+                                    <div class="input-group date mb-3" id="date-container">
                                         {{ form_widget(form.birthdayDate)}}
                                         <div class="input-group-append">
                                             <span class="input-group-text">
@@ -179,17 +179,5 @@
     {{ parent() }}
     {{ encore_entry_script_tags('js/datepicker') }}
     {{ encore_entry_script_tags('js/datepicker-fr') }}
-    <script>
-        // customize datepicker
-        $(document).ready(function(){
-            $('.js-datepicker').datepicker({
-                format: 'dd-mm-yyyy',
-                language: 'fr',
-                orientation: 'top auto',
-                startView: 2,
-                endDate: '-18y',
-                startDate: '-105y'
-            });
-        });
-    </script>
+    {{ encore_entry_script_tags('js/dateManagement') }}
 {% endblock %}

@@ -73,3 +73,19 @@ body {
     background-color: $greyColor;
   }
 }
+
+.cardProfile{
+  min-width: 80%;
+}
+
+.cardHeader {
+  width: 100%;
+  background-color:#7fadc5;
+  text-align:center
+}
+
+.cardPseudo{
+  margin-left: 2rem;
+  color: #ffffff;
+  font-size: 1.5rem;
+}
