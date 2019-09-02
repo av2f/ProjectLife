@@ -1,6 +1,6 @@
-<div class="col-lg-3 colProfile">
+<div class="col-lg-3 mainColProfile">
     <div class="row">
-        <div class="col m-1 labelProfile">
+        <div class="col m-1 mainLabelProfile">
             <h2 class="text-center">{{ app.user.pseudo }}</h2>
         </div>
     </div>
@@ -20,9 +20,9 @@
         {% endif %}
         <div class="progress-bar {{ progressClass }}" role="progressbar" style="width:{{ user.completed }}%" aria-valuenow="{{ user.completed }}" aria-valuemin="0" aria-valuemax="100"></div>
     </div>
-    <div class="cardProfile card border-secondary mt-4 mb-3">
-        <h5 class="cardProfile card-header text-center"><strong>Mon abonnement</strong></h5>
-        <div class="cardProfile card-body">
+    <div class="mainCardProfile card border-secondary mt-4 mb-3">
+        <h5 class="mainCardProfile card-header text-center"><strong>Mon abonnement</strong></h5>
+        <div class="mainCardProfile card-body">
             {% if not subscription %}
                 <p class="card-text text-center">Vous n'avez souscrit à aucun abonnement.</p>
                 <hr>
@@ -58,9 +58,9 @@
             {% endif %}
         </div>
     </div>
-    <div class="cardProfile card border-secondary mt-4 mb-3">
-        <h5 class="cardProfile card-header text-center"><strong>Mon activité</strong></h5>
-        <div class="cardProfile card-body">
+    <div class="mainCardProfile card border-secondary mt-4 mb-3">
+        <h5 class="mainCardProfile card-header text-center"><strong>Mon activité</strong></h5>
+        <div class="mainCardProfile card-body">
             <table class="table table-hover">
                 <tbody>
                     <tr>

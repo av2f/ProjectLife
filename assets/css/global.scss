@@ -9,7 +9,7 @@ $greyColor: #f5f5f5;
 $profileColor: #7fadc5;
 $cardA : #3f4253;
 
-.container-fluid {
+body {
   margin-top: 80px;
 }
 
@@ -44,19 +44,19 @@ $cardA : #3f4253;
   background-color: $greyColor;
 }
 
-.colProfile {
+.mainColProfile {
   background-color: $profileColor;
   color: #ffffff;
   min-height: 100vh;
 }
 
-.labelProfile {
+.mainLabelProfile {
   background-color: #ffffff;
   color: $profileColor;
   /* border-radius: 20px; */
 }
 
-.cardProfile {
+.mainCardProfile {
   a {
     color: $cardA;
     &:hover {
