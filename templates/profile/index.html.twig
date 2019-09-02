@@ -2,6 +2,11 @@
 
 {% block title %}Mon Profil{% endblock %}
 
+{% block stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('css/datepicker') }}
+{% endblock %}
+
 {% block body %}
     <div class="container">
         <div class="d-flex justify-content-center pt-2">
@@ -21,12 +26,12 @@
                         {{ form_row(form.lastName) }}
                         {{ form_label(form.birthdayDate) }}
                         <div class="input-group date mb-3" id="date-container">
-                            {{ form_widget(form.birthdayDate)}}
                             <div class="input-group-append">
                                 <span class="input-group-text">
                                     <i class="fas fa-calendar-alt"></i>
                                 </span>
                             </div>
+                            {{ form_widget(form.birthdayDate)}}
                         </div>
                         {{ form_row(form.email) }}
                         {{ form_row(form.profession) }}
