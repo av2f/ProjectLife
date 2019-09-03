@@ -10,14 +10,24 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
 class ProfileType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            //->add('gender')
             //->add('password')
+            ->add('gender', ChoiceType::class, [
+                'label' => 'Je suis',
+                'choices'  => [
+                    'Une femme' => 'W',
+                    'Un homme' => 'M'
+                ],
+                'mapped' => false,
+                'expanded' => true,
+                'multiple' => false
+            ])
             ->add('firstName', TextType::class, [
                 'label'=>"Prénom",
                 'attr'=>[
@@ -51,12 +61,9 @@ class ProfileType extends AbstractType
                     'placeholder'=>"Saisissez votre profession"
                 ]
             ])
-            ->add('description', CKEditorType::class, array(
-                'config' => array(
-                    'uiColor' => '#ffffff',
-                    //...
-                ),
-            ))
+            ->add('description', CKEditorType::class, [
+                'config_name' => 'btj_config',
+            ])
         ;
     }
 

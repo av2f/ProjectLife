@@ -1,0 +1,18 @@
+{# Render gender button radio #}
+<div class="btn-group btn-group-toggle mb-3" data-toggle="buttons"> 
+    <span class="my-auto mr-2">{{ form_label(form) }}</span>
+    {% for key,choice in form.vars.choices %}
+        {% set icon = "fas fa-male" %}
+        {% set classButton = "btn-primary" %}
+        {% if choice.value == 1 %}
+            {% set icon = "fas fa-female" %}
+            {% set classButton = "btn-primary active" %}
+        {% endif %}
+        <label class="btn {{ classButton }}">
+            <input type="radio" 
+            name="{{ form.vars.full_name }}" id="{{ form.vars.id }}_{{ key }}"
+            value="{{ choice.value }}" autocomplete="off" {% if choice.value == 1 %}checked{% endif %}>
+            <i class="{{ icon }} mr-2"></i>{{ choice.label }}
+        </label>
+    {% endfor %}
+</div>

@@ -80,7 +80,7 @@ body {
 
 .cardHeader {
   width: 100%;
-  background-color:#7fadc5;
+  background-color: $profileColor;
   text-align:center
 }
 
@@ -88,4 +88,22 @@ body {
   margin-left: 2rem;
   color: #ffffff;
   font-size: 1.5rem;
+}
+
+@media (max-width: 1024px) {
+  #picProfile {
+      margin-bottom: 1rem;
+  }
+}
+
+#picProfile{
+  max-width: 192px;
+  max-height: 192px;
+  border: .1rem solid #C0C0C0;
+  margin-right: 2rem;
+}
+
+.btn-profile {
+  background-color: $profileColor;
+  color: #ffffff;
 }

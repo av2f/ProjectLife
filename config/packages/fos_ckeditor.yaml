@@ -1,8 +1,19 @@
 # Read the documentation: https://symfony.com/doc/current/bundles/FOSCKEditorBundle/index.html
 fos_ck_editor:
-    # CKEditor
+
+    default_config: btj_config
+
     base_path: "build/ckeditor"
     js_path:   "build/ckeditor/ckeditor.js"
+
+    configs:
+        btj_config:
+            language: fr
+            uiColor:  "#ffffff"
+            toolbar:    [['Undo', 'Redo'],['Cut','Copy','Paste'],'/',['Bold','Italic','Strike','Blockquote','-','RemoveFormat'],
+                        ['NumberedList','BulletedList']]
+            #toolbar: standard
+            resize_enabled: false
 
 twig:
     form_themes:
