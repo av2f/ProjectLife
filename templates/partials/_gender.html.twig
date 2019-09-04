@@ -3,10 +3,10 @@
     <span class="my-auto mr-2">{{ form_label(form) }}</span>
     {% for key,choice in form.vars.choices %}
         {% set icon = "fas fa-male" %}
-        {% set classButton = "btn-primary" %}
-        {% if choice.value == 1 %}
+        {% set classButton = "btn-info" %}
+        {% if choice.value == "W" %}
             {% set icon = "fas fa-female" %}
-            {% set classButton = "btn-primary active" %}
+            {% set classButton = "btn-info active" %}
         {% endif %}
         <label class="btn {{ classButton }}">
             <input type="radio" 

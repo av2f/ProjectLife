@@ -7,6 +7,7 @@ use DateTime;
 use DateInterval;
 use App\Entity\User;
 use App\Entity\InterestType;
+use App\Entity\Picture;
 use App\Entity\SubscribType;
 use App\Entity\Subscription;
 use Doctrine\Bundle\FixturesBundle\Fixture;
@@ -191,6 +192,14 @@ class AppFixtures extends Fixture
                             -> setActive(true);
 
                 $manager->persist($subscribe);
+            }
+
+            // Create randomly pictures
+            for ($j=0; $j<=mt_rand(0,3); $j++) {
+                $picture=new Picture();
+                $picture    -> setPath("http://lorempixel.com/400/200/people")
+                            -> setUser($user);
+                $manager->persist($picture);
             }
         }
         $manager->flush();

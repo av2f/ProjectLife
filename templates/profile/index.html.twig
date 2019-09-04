@@ -46,9 +46,9 @@
                     <div class="card-header"><i class="far fa-images"></i>&nbsp;&nbsp;Photos</div>
                     <div class="card-body">
                         <div style="text-align:center">
-                        <img id="picProfile" src="/img/Librairy/sample_pictures/pict1.jpg">
-                        <img id="picProfile" src="/img/Librairy/sample_pictures/pict2.jpg">
-                        <img id="picProfile" src="/img/Librairy/sample_pictures/pict3.jpg">
+                            {% for picture in user.pictures %}
+                                <img id="picProfile" src="{{ picture.path }}">
+                            {% endfor %}
                         </div>
                     </div>
                 </div>
