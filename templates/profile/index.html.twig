@@ -7,6 +7,12 @@
 {% block stylesheets %}
     {{ parent() }}
     {{ encore_entry_link_tags('css/datepicker') }}
+    <style>
+       
+        
+
+        
+    </style>
 {% endblock %}
 
 {% block body %}
@@ -45,9 +51,21 @@
                 <div class="card border-light mb-3 mt-2 cardProfile">
                     <div class="card-header"><i class="far fa-images"></i>&nbsp;&nbsp;Photos</div>
                     <div class="card-body">
-                        <div style="text-align:center">
+                        <div class="block-contain-image">
                             {% for picture in user.pictures %}
-                                <img id="picProfile" src="{{ picture.path }}">
+                                <div class="contain-image">
+                                    <img class="picProfile" src="{{ picture.path }}" alt="{{ user.pseudo }}">
+                                    <span class="overlay-update">
+                                        <a href="#" class="icon-update" title="Modifier la photo">
+                                            <i class="fas fa-camera i-update"></i>
+                                        </a>
+                                    </span>
+                                    <span class="overlay-delete">
+                                        <a href="#" class="icon-delete" title="Supprimer la photo">
+                                            <i class="fas fa-trash-alt i-delete"></i>
+                                        </a>
+                                    </span>
+                                </div>
                             {% endfor %}
                         </div>
                     </div>
