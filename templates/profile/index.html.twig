@@ -7,12 +7,6 @@
 {% block stylesheets %}
     {{ parent() }}
     {{ encore_entry_link_tags('css/datepicker') }}
-    <style>
-       
-        
-
-        
-    </style>
 {% endblock %}
 
 {% block body %}
@@ -51,7 +45,15 @@
                 <div class="card border-light mb-3 mt-2 cardProfile">
                     <div class="card-header"><i class="far fa-images"></i>&nbsp;&nbsp;Photos</div>
                     <div class="card-body">
+                        {% set displayImageAdd = "inline-block" %}
+                        {% if user.pictures | length == 3 %}
+                            {% set displayImageAdd = "none" %}
+                        {% endif %}
                         <div class="block-contain-image">
+                            <div class="contain-image-add" style="display:{{ displayImageAdd }}">
+                                <img class="picProfile" src="/img/Librairy/sample_pictures/addpicture.png" alt="Ajouter une image"
+                                data-toggle="tooltip" data-placement="left" title="Ajouter une photo">
+                            </div>
                             {% for picture in user.pictures %}
                                 <div class="contain-image">
                                     <img class="picProfile" src="{{ picture.path }}" alt="{{ user.pseudo }}">
@@ -89,7 +91,8 @@
                 </div>
             </div>
              <div class="d-flex justify-content-center pt-2">
-                <button type="submit" class="btn btn-profile"><i class="far fa-edit"></i>&nbsp;&nbsp;Modifier</button>
+                <button type="submit" class="btn btn-profile-update mr-2"><i class="far fa-edit"></i>&nbsp;&nbsp;Modifier</button>
+                <button type="button" class="btn btn-profile-delete"><i class="fas fa-trash-alt"></i>&nbsp;&nbsp;Suprimer mon compte</button>
             </div>
         {{ form_end(form) }}
     </div>
@@ -105,4 +108,9 @@
     {{ encore_entry_script_tags('js/datepicker') }}
     {{ encore_entry_script_tags('js/datepicker-fr') }}
     {{ encore_entry_script_tags('js/dateManagement') }}
+    <script>
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip()
+        })
+    </script>
 {% endblock %}
