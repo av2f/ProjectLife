@@ -3,6 +3,7 @@
 namespace App\Form;
 
 use App\Entity\User;
+use App\Form\PictureType;
 use Symfony\Component\Form\AbstractType;
 use FOS\CKEditorBundle\Form\Type\CKEditorType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -11,6 +12,7 @@ use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 
 class ProfileType extends AbstractType
 {
@@ -63,6 +65,12 @@ class ProfileType extends AbstractType
             ])
             ->add('description', CKEditorType::class, [
                 'config_name' => 'btj_config',
+            ])
+            ->add('pictures', CollectionType::class, [
+                'entry_type' => PictureType::class,
+                'entry_options' => ['label' => false],
+                'allow_add' => true,
+                'allow_delete' => true
             ])
         ;
     }
