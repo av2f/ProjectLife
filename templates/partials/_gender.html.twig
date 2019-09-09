@@ -11,7 +11,7 @@
         <label class="btn {{ classButton }}">
             <input type="radio" 
             name="{{ form.vars.full_name }}" id="{{ form.vars.id }}_{{ key }}"
-            value="{{ choice.value }}" autocomplete="off" {% if choice.value == 1 %}checked{% endif %}>
+            value="{{ choice.value }}" autocomplete="off" {% if choice.value == "W" %}checked{% endif %}>
             <i class="{{ icon }} mr-2"></i>{{ choice.label }}
         </label>
     {% endfor %}
