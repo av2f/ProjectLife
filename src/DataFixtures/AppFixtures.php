@@ -195,7 +195,7 @@ class AppFixtures extends Fixture
             }
 
             // Create randomly pictures
-            for ($j=0; $j<=mt_rand(0,3); $j++) {
+            for ($j=0; $j<=mt_rand(0,2); $j++) {
                 $picture=new Picture();
                 $picture    -> setPath("http://lorempixel.com/400/200/people")
                             -> setUser($user);
