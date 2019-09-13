@@ -80,7 +80,7 @@
 {% endblock %}
 
 {# Pictures management #}
-{% block _profile_pictures_entry_widget %}
+{% block _profile_pictures_widget %}
     {% set displayImageAdd = "inline-block" %}
     {# form=form.pictures = CollectionType = Pictures #}
     {% if form | length == 3 %}
@@ -91,6 +91,8 @@
             <img class="picProfile" src="/img/Librairy/sample_pictures/addpicture.png" alt="Ajouter une image"
             data-toggle="tooltip" data-placement="left" title="Ajouter une photo">
         </div>
+        <div class="test" data-prototype="{{ form_widget(form.vars.prototype)|e('html_attr') }}"
+         data-index="{{ form|length }}">
         {% for picture in form %}
             <div class="contain-image">
                 <img class="picProfile" src="{{ picture.vars.data.path }}" alt="{{ app.user.pseudo }}">
@@ -106,6 +108,7 @@
                 </span>
             </div>
         {% endfor %}
+        </div>
     </div>
 {% endblock %}
 
