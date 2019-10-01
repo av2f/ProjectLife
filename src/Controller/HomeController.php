@@ -17,7 +17,7 @@ class HomeController extends AbstractController
      * Author : Frederic Parmentier
      * CreatedAt : 2019/08/06
      * 
-     * @Route("/", name="btj_home")
+     * @Route("/", name="home_index")
      *
      * @param Request $request
      * @param UserPasswordEncoderInterface $passwordEncoder

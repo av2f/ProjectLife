@@ -15,7 +15,7 @@ class SecurityController extends AbstractController
      * Author : Frederic Parmentier
      * CreatedAt : 2019/08/06
      * 
-     * @Route("/login", name="btj_login")
+     * @Route("/login", name="security_login")
      *
      * @param AuthenticationUtils $authenticationUtils
      * @return Response
@@ -24,7 +24,7 @@ class SecurityController extends AbstractController
     {
         /* Managed by Security/LoginFormAuthenticator
         if ($this->getUser()) {
-            $this->redirectToRoute('btj_home');
+            $this->redirectToRoute('home_index');
         }*/
 
         // get the login error if there is one
@@ -41,7 +41,7 @@ class SecurityController extends AbstractController
     /**
      * Logout function. Nothing to do.
      * 
-     * @Route("/logout", name="btj_logout")
+     * @Route("/logout", name="security_logout")
      */
     public function logout()
     {

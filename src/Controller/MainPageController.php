@@ -12,7 +12,7 @@ class MainPageController extends AbstractController
     /**
      * display the main page
      *
-     * @Route("/main", name="btj_main")
+     * @Route("/main", name="mainpage_index")
      * 
      * Can access only if login ok
      * @isGranted("ROLE_USER")

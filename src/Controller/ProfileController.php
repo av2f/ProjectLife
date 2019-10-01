@@ -13,7 +13,7 @@ class ProfileController extends AbstractController
 {
     /**
      * 
-     * @Route("/profile/{id}", name="btj_profile")
+     * @Route("/profile/{id}", name="profile_index")
      * @isGranted("ROLE_USER")
      * 
      * @return Response
