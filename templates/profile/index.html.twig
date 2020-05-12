@@ -91,8 +91,9 @@
             <img class="picProfile" src="/img/Librairy/sample_pictures/addpicture.png" alt="Ajouter une image"
             data-toggle="tooltip" data-placement="left" title="Ajouter une photo">
         </div>
-        <div class="test" data-prototype="{{ form_widget(form.vars.prototype)|e('html_attr') }}"
-         data-index="{{ form|length }}">
+        {# <div class="test" data-prototype="{{ form_widget(form.vars.prototype)|e('html_attr') }}"
+         data-index="{{ form|length }}"> #}
+         <div class="test" data-prototype="<div class='test2'></div>">
         {% for picture in form %}
             <div class="contain-image">
                 <img class="picProfile" src="{{ picture.vars.data.path }}" alt="{{ app.user.pseudo }}">
